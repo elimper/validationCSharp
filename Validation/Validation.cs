@@ -94,6 +94,82 @@ namespace Validation
             return false;
         }
 
+		
+		/**	Checks if the string input is compatable as a decimal
+		*	
+		*	<param name="sInput">String input to be validated</param>
+		*	<returns>True if it can be a decimal, or False</returns>
+		*/
+		public static bool isDecimal(string sInput)
+		{
+			try
+			{
+				decimal.Parse(sInput);
+				return true;
+			}
+			catch  (Exception)
+			{
+				return false;
+			}
+		}
+		
+		/** checks to see if a value is in the range
+         * 
+         * <param name="sInput"> a string that needs to be checked as an Decimal</param>
+         * <param name="decimalLowerLimit"> the lowest value the decimal can be. Inclusive</param>
+         * <param name="decimalUpperLimit"> the largest value the decimal can be. Inclusive</param>
+         * <returns> true if the string is a decimal in range. Otherwise false</returns>
+         */
+        public static bool isDecimalInRange(string sInput, decimal decimalLowerLimit, decimal decimalUpperLimit)
+        {
+            if(decimalLowerLimit < decimal.MinValue)
+            {
+                return false;
+            }
+            if(decimalUpperLimit > decimal.MaxValue)
+            {
+                return false;
+            }
+            try
+            {
+                decimal number = decimal.Parse(sInput);
+                if (number >= decimalLowerLimit && number <= decimalUpperLimit)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+		
+		/**Checks a decimal to validate it is within the range
+         * 
+         * <param name="decimalInput"> a decimal to validate</param>
+         * <param name="decimalLowerLimit">Lowest value the number can be. Inclusive</param>
+         * <param name="decimalUpperLimit">Largest value the number can be. Incllusive</param>
+         * <returns> true if the number is in range. Otherwise false</returns>
+         */
+        public static bool isIntInRange(decimal decimalInput, decimal decimalLowerLimit, decimal decimalUpperLimit)
+        {
+            if (decimalLowerLimit < decimal.MinValue)
+            {
+                return false;
+            }
+            if (decimalUpperLimit > decimal.MaxValue)
+            {
+                return false;
+            }
+            if (decimalInput >= decimalLowerLimit && decimalInput <= decimalUpperLimit)
+            {
+                return true;
+            }
+            return false;
+        }
+		
+		
         /** Checks to see if the provided string is a valid email address
          * 
          * <param name="email"> a string that might be an email</param>
